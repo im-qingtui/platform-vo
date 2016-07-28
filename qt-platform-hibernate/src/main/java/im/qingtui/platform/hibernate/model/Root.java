@@ -14,8 +14,8 @@ public class Root extends im.qingtui.platform.hibernate.model.Entity {
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private long createTime;
-    private long updateTime;
+    private long createtime;
+    private long updatetime;
 
 
     @Id
@@ -27,20 +27,20 @@ public class Root extends im.qingtui.platform.hibernate.model.Entity {
         this.id = id;
     }
 
-    public long getCreateTime() {
-        return createTime;
+    public long getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(long createtime) {
+        this.createtime = createtime;
     }
 
-    public long getUpdateTime() {
-        return updateTime;
+    public long getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(long updatetime) {
+        this.updatetime = updatetime;
     }
 
 }

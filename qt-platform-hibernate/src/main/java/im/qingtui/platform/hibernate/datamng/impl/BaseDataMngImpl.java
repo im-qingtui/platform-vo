@@ -39,8 +39,8 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
         if (r.getId() == null)
             r.setId(UuidUtils.getUUID());
         long now = System.currentTimeMillis();
-        r.setCreateTime(now);
-        r.setUpdateTime(now);
+        r.setCreatetime(now);
+        r.setUpdatetime(now);
         return (String) this.getHibernateTemplate(dbId).save(r);
     }
 
@@ -51,7 +51,7 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public void updateObj(String dbId, Root r) throws Exception {
-        r.setUpdateTime(System.currentTimeMillis());
+        r.setUpdatetime(System.currentTimeMillis());
         this.getHibernateTemplate(dbId).update(r);
     }
 
@@ -210,9 +210,9 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
         long now = System.currentTimeMillis();
         if (r.getId() == null) {
             r.setId(UuidUtils.getUUID());
-            r.setCreateTime(now);
+            r.setCreatetime(now);
         }
-        r.setUpdateTime(now);
+        r.setUpdatetime(now);
         this.getHibernateTemplate(dbId).saveOrUpdate(r);
     }
 
