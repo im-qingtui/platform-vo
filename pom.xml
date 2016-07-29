@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>im.qingtui.platform</groupId>
+    <artifactId>qt-platform</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>qt-platform</name>
+
+    <modules>
+        <module>qt-platform-core</module>
+        <module>qt-platform-hibernate</module>
+        <module>qt-platform-mybatis</module>
+        <!--<module>qt-platform-web</module>
+        <module>qt-platform-dubbox</module>
+        <module>qt-platform-utils</module>-->
+    </modules>
+
+    <properties>
+        <im.qingtui.platform.version>1.0.0-SNAPSHOT</im.qingtui.platform.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>3.2.9.RELEASE</org.springframework.version>
+        <com.jackson.version>1.9.13</com.jackson.version>
+        <aopalliance.version>1.0</aopalliance.version>
+        <org.aspectj.aspectjweaver.version>1.6.12</org.aspectj.aspectjweaver.version>
+        <org.aspectj.aspectjrt.version>1.6.12</org.aspectj.aspectjrt.version>
+        <javassist.version>3.12.0.GA</javassist.version>
+        <cglib.version>2.2</cglib.version>
+        <commons-logging.version>1.1.1</commons-logging.version>
+        <slf4j-log4j12.version>1.7.7</slf4j-log4j12.version>
+        <jcl-over-slf4j.version>1.7.7</jcl-over-slf4j.version>
+        <mysql-connector-java.version>5.1.16</mysql-connector-java.version>
+        <com.alibaba.druid.version>1.0.15</com.alibaba.druid.version>
+        <org.mybatis.version>3.2.1</org.mybatis.version>
+        <org.mybatis.mybatis-spring.version>1.2.3</org.mybatis.mybatis-spring.version>
+        <org.hibernate.hibernate-core.version>3.6.10.Final</org.hibernate.hibernate-core.version>
+        <org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://10.2.2.100:8081/nexus/content/repositories/releases</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://10.2.2.100:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+
+        <!-- junit -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- junit -->
+
+    </dependencies>
+
+</project>
