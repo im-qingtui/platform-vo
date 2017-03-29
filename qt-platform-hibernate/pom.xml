@@ -5,12 +5,12 @@
     <parent>
         <groupId>im.qingtui.platform</groupId>
         <artifactId>qt-platform</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <groupId>im.qingtui.platform</groupId>
     <artifactId>qt-platform-hibernate</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>qt-platform-hibernate</name>
     <packaging>jar</packaging>
 
@@ -76,6 +76,11 @@
             <artifactId>qt-platform-core</artifactId>
             <version>${im.qingtui.platform.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>im.qingtui.platform</groupId>
+            <artifactId>qt-platform-db</artifactId>
+            <version>${im.qingtui.platform.version}</version>
         </dependency>
         <!-- hibernate -->
         <dependency>
