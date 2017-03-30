@@ -4,7 +4,7 @@
 
     <groupId>im.qingtui.platform</groupId>
     <artifactId>qt-platform</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>qt-platform</name>
 
@@ -21,7 +21,7 @@
     <properties>
         <im.qingtui.platform.version>${project.version}</im.qingtui.platform.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>3.2.9.RELEASE</org.springframework.version>
+        <org.springframework.version>4.0.3.RELEASE</org.springframework.version>
         <com.jackson.version>1.9.13</com.jackson.version>
         <aopalliance.version>1.0</aopalliance.version>
         <org.aspectj.aspectjweaver.version>1.6.12</org.aspectj.aspectjweaver.version>
