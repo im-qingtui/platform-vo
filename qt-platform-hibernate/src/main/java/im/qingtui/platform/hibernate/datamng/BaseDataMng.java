@@ -12,7 +12,6 @@ public interface BaseDataMng extends BaseEntityMng {
     /**
      * 保存Obj
      * 
-     * @param r
      * @return Obj主键，id值
      * @throws Exception
      */
@@ -21,8 +20,6 @@ public interface BaseDataMng extends BaseEntityMng {
     /**
      * 保存Obj
      * 
-     * @param dbId
-     * @param r
      * @return Obj主键，id值
      * @throws Exception
      */
@@ -35,8 +32,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 如不存在则新增一条记录存储<br>
      * 如存在则更新这条记录，严格的字段更新，会导致空值覆盖掉数据库原有的值
      * 
-     * @param r
-     * @throws Exception
      */
     public void saveOrUpdateObj(Root r) throws Exception;
 
@@ -47,9 +42,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 如不存在则新增一条记录存储<br>
      * 如存在则更新这条记录，严格的字段更新，会导致空值覆盖掉数据库原有的值
      * 
-     * @param dbId
-     * @param r
-     * @throws Exception
      */
     public void saveOrUpdateObj(String dbId, Root r) throws Exception;
 
@@ -59,8 +51,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 如果对离线状态对象进行存储会引发错误<br>
      * 该方法可以有效的 <span style="color:red">防止空值覆盖</span>。
      * 
-     * @param r
-     * @throws Exception
      */
     public void updateObj(Root r) throws Exception;
 
@@ -70,28 +60,18 @@ public interface BaseDataMng extends BaseEntityMng {
      * 如果对离线状态对象进行存储会引发错误<br>
      * 该方法可以有效的 <span style="color:red">防止空值覆盖</span>。
      * 
-     * @param dbId
-     * @param r
-     * @throws Exception
      */
     public void updateObj(String dbId, Root r) throws Exception;
 
     /**
      * 通过ID获取Obj
      * 
-     * @param id
-     * @param className
-     * @return
      */
     public <T extends Root> T getObj(String id, String className);
 
     /**
      * 通过ID获取Obj
      * 
-     * @param dbId
-     * @param id
-     * @param className
-     * @return
      */
     public <T extends Root> T getObj(String dbId, String id, String className);
 
@@ -99,19 +79,12 @@ public interface BaseDataMng extends BaseEntityMng {
      * 用默认数据源<br>
      * 获取Root及其子类对象实例从数据库中
      * 
-     * @param id
-     * @param classType
-     * @return
      */
     public <T extends Root> T getObj(String id, Class<T> classType);
 
     /**
      * 获取Root及其子类对象实例从数据库中
      * 
-     * @param dbId
-     * @param id
-     * @param classType
-     * @return
      */
     public <T extends Root> T getObj(String dbId, String id, Class<T> classType);
 
@@ -119,9 +92,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 用默认数据源<br>
      * 删除Obj
      * 
-     * @param id
-     * @param className
-     * @throws Exception
      */
     public void deleteObj(String id, String className) throws Exception;
 
@@ -129,10 +99,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 
      * 删除Obj
      * 
-     * @param dbId
-     * @param id
-     * @param className
-     * @throws Exception
      */
     public void deleteObj(String dbId, String id, String className) throws Exception;
 
@@ -140,19 +106,12 @@ public interface BaseDataMng extends BaseEntityMng {
      * 用默认数据源<br>
      * 删除Obj
      * 
-     * @param id
-     * @param classType
-     * @throws Exception
      */
     public <T extends Root> void deleteObj(String id, Class<T> classType) throws Exception;
 
     /**
      * 删除Obj
      * 
-     * @param dbId
-     * @param id
-     * @param classType
-     * @throws Exception
      */
     public <T extends Root> void deleteObj(String dbId, String id, Class<T> classType) throws Exception;
 
@@ -172,7 +131,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 
      * 按照condition获取一个Obj
      * 
-     * @param dbId
      * @param className
      *            模型类名
      * @param condition
@@ -198,7 +156,6 @@ public interface BaseDataMng extends BaseEntityMng {
      * 
      * 按照condition获取一个Obj
      * 
-     * @param dbId
      * @param classType
      *            模型class <br>
      *            ex Root.class
@@ -223,7 +180,6 @@ public interface BaseDataMng extends BaseEntityMng {
     /**
      * 按照condition获取Obj列表
      * 
-     * @param dbId
      * @param className
      *            模型类名
      * @param condition
@@ -247,7 +203,6 @@ public interface BaseDataMng extends BaseEntityMng {
     /**
      * 按照condition获取Obj列表
      * 
-     * @param dbId
      * @param classType
      *            模型class
      * @param condition
@@ -264,8 +219,6 @@ public interface BaseDataMng extends BaseEntityMng {
      *            模型类名
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -276,13 +229,10 @@ public interface BaseDataMng extends BaseEntityMng {
      * 
      * 获取所有的Obj
      * 
-     * @param dbId
      * @param className
      *            模型类名
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -298,8 +248,6 @@ public interface BaseDataMng extends BaseEntityMng {
      *            模型class
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -310,13 +258,10 @@ public interface BaseDataMng extends BaseEntityMng {
      * 
      * 获取所有的Obj
      * 
-     * @param dbId
      * @param classType
      *            模型class
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -332,8 +277,6 @@ public interface BaseDataMng extends BaseEntityMng {
      *            模型类名
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -350,8 +293,6 @@ public interface BaseDataMng extends BaseEntityMng {
      *            模型class
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -367,8 +308,6 @@ public interface BaseDataMng extends BaseEntityMng {
      *            模型class
      * @param firstRow
      *            返回第一行位置
-     * @param PageSize
-     *            页面容量，-1 表示不分页
      * @param condition
      *            对象名位obj,过滤条件 例如：obj.attr=1 and obj.name='abc'
      * @return 返回值不包含后代实例
@@ -380,19 +319,12 @@ public interface BaseDataMng extends BaseEntityMng {
      * 用默认数据库<br>
      * 获取总共记录条数加上条件
      * 
-     * @param className
-     * @param condition
-     * @return
      */
     public Long getAllObjCountByCondition(String className, String condition);
 
     /**
      * 获取总共记录条数加上条件
      * 
-     * @param dbId
-     * @param className
-     * @param condition
-     * @return
      */
     public Long getAllObjCountByCondition(String dbId, String className, String condition);
 
@@ -410,7 +342,6 @@ public interface BaseDataMng extends BaseEntityMng {
     /**
      * 获取className中所有指定name属性的Obj列表
      * 
-     * @param dbId
      * @param classType
      *            模型Class
      * @param name
@@ -428,21 +359,16 @@ public interface BaseDataMng extends BaseEntityMng {
      *            name属性
      * @param className
      *            对象类名
-     * @return
-     * @throws Exception
      */
     public String getObjIdByName(String objName, Class<? extends Root> className) throws Exception;
 
     /**
      * 通过对象name属性获取对象的id
      * 
-     * @param dbId
      * @param objName
      *            name属性
      * @param className
      *            对象类名
-     * @return
-     * @throws Exception
      */
     public String getObjIdByName(String dbId, String objName, Class<? extends Root> className) throws Exception;
 }
