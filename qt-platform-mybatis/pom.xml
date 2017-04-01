@@ -5,12 +5,12 @@
     <parent>
         <groupId>im.qingtui.platform</groupId>
         <artifactId>qt-platform</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.6-SNAPSHOT</version>
     </parent>
 
     <groupId>im.qingtui.platform</groupId>
     <artifactId>qt-platform-mybatis</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
     <name>qt-platform-mybatis</name>
 
     <build>

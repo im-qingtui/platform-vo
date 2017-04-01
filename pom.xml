@@ -4,7 +4,7 @@
 
     <groupId>im.qingtui.platform</groupId>
     <artifactId>qt-platform</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>qt-platform</name>
 
@@ -16,6 +16,7 @@
         <module>qt-platform-utils</module>
         <module>qt-platform-web</module>
         <module>qt-platform-db</module>
+        <module>qt-platform-redis</module>
     </modules>
 
     <properties>

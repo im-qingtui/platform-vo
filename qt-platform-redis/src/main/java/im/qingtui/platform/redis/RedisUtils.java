@@ -20,11 +20,6 @@ public class RedisUtils {
 
     public String auth;
 
-    /**
-     * 轻推基本信息库
-     */
-    public static int defalut_db = 0;
-
     public static JedisPool pool;
 
     // 可用连接实例的最大数目，默认值为8；
@@ -81,6 +76,13 @@ public class RedisUtils {
      * 获取jedis连接
      */
     public synchronized Jedis getJedis() {
+        return getJedis(-1);
+    }
+
+    /**
+     * 获取jedis连接
+     */
+    public synchronized Jedis getJedis(int index) {
         Jedis resource = null;
         for (int i = 1; resource == null; i++) {
             if (i % 50 == 0) {
@@ -93,6 +95,9 @@ public class RedisUtils {
             try {
                 resource = pool.getResource();
                 resource.auth(auth);
+                if(index>=0){
+                    resource.select(index);
+                }
                 return resource;
             } catch (Exception e) {
                 log.error("获取jedis异常", e);
