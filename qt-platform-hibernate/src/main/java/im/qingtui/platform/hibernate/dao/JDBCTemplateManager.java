@@ -29,7 +29,6 @@ public class JDBCTemplateManager {
     /**
      * 静态实例化方法，只会生成一个JDBCTemplateManager实例
      *
-     * @return
      */
     static public JDBCTemplateManager getInstance() {
         if (instance == null) {
@@ -42,7 +41,6 @@ public class JDBCTemplateManager {
     /**
      * 获取默认JDBCTemplate
      *
-     * @return
      */
     public JdbcTemplate getTemplate() {
         return getTemplate(null);
@@ -51,8 +49,6 @@ public class JDBCTemplateManager {
     /**
      * 根据datasourceId获取JDBCTemplate
      *
-     * @param datasourceId
-     * @return
      */
     public JdbcTemplate getTemplate(String datasourceId) {
         if (datasourceId == null) {

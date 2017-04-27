@@ -16,19 +16,14 @@ public interface BaseEntityMng {
 	/**
 	 * 保存Obj 返回的值不确定，因为存在联合主键
 	 * 
-	 * @param r
 	 * @return Obj主键，id值
-	 * @throws Exception
 	 */
 	public Serializable saveObj(Entity r) throws Exception;
 
 	/**
 	 * 保存Obj 返回的值不确定，因为存在联合主键
 	 * 
-	 * @param dbId
-	 * @param r
 	 * @return Obj主键，id值
-	 * @throws Exception
 	 */
 	public Serializable saveObj(String dbId, Entity r) throws Exception;
 
@@ -38,8 +33,6 @@ public interface BaseEntityMng {
 	 * 如果对离线状态对象进行存储会引发错误<br>
 	 * 该方法可以有效的 <span style="color:red">防止空值覆盖</span>。
 	 * 
-	 * @param r
-	 * @throws Exception
 	 */
 	public void updateObj(Entity r) throws Exception;
 
@@ -49,9 +42,6 @@ public interface BaseEntityMng {
 	 * 如果对离线状态对象进行存储会引发错误<br>
 	 * 该方法可以有效的 <span style="color:red">防止空值覆盖</span>。
 	 * 
-	 * @param dbId
-	 * @param r
-	 * @throws Exception
 	 */
 	public void updateObj(String dbId, Entity r) throws Exception;
 
@@ -62,8 +52,6 @@ public interface BaseEntityMng {
 	 * 如不存在则新增一条记录存储<br>
 	 * 如存在则更新这条记录，严格的字段更新，会导致空值覆盖掉数据库原有的值
 	 * 
-	 * @param r
-	 * @throws Exception
 	 */
 	public void saveOrUpdateObj(Entity r) throws Exception;
 
@@ -74,26 +62,18 @@ public interface BaseEntityMng {
 	 * 如不存在则新增一条记录存储<br>
 	 * 如存在则更新这条记录，严格的字段更新，会导致空值覆盖掉数据库原有的值
 	 * 
-	 * @param dbId
-	 * @param r
-	 * @throws Exception
 	 */
 	public void saveOrUpdateObj(String dbId, Entity r) throws Exception;
 
 	/**
 	 * 删除对象
 	 * 
-	 * @param r
-	 * @throws Exception
 	 */
 	public void deleteObj(Entity r) throws Exception;
 
 	/**
 	 * 删除对象
 	 * 
-	 * @param dbId
-	 * @param r
-	 * @throws Exception
 	 */
 	public void deleteObj(String dbId, Entity r) throws Exception;
 
@@ -130,7 +110,6 @@ public interface BaseEntityMng {
 	/**
 	 * 获取className中所有Obj列表
 	 * 
-	 * @param dbId
 	 * @param classType
 	 * 模型class
 	 * @return 返回值包含后代实例
@@ -141,17 +120,12 @@ public interface BaseEntityMng {
 	 * 用默认数据库<br>
 	 * 获取总共记录条数
 	 * 
-	 * @param className
-	 * @return
 	 */
 	public Long getAllObjCount(String className);
 
 	/**
 	 * 获取总共记录条数
 	 * 
-	 * @param dbId
-	 * @param className
-	 * @return
 	 */
 	public Long getAllObjCount(String dbId, String className);
 
@@ -159,17 +133,12 @@ public interface BaseEntityMng {
 	 * 用默认数据库<br>
 	 * 获取总共记录条数
 	 * 
-	 * @param classType
-	 * @return
 	 */
 	public <T extends Entity> Long getAllObjCount(Class<T> classType);
 
 	/**
 	 * 获取总共记录条数
 	 * 
-	 * @param dbId
-	 * @param classType
-	 * @return
 	 */
 	public <T extends Entity> Long getAllObjCount(String dbId, Class<T> classType);
 
@@ -239,9 +208,6 @@ public interface BaseEntityMng {
 	 * 
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public List< Map< String, Object >> querySql(String sql, List<Object> param) throws Exception;
 
@@ -250,12 +216,8 @@ public interface BaseEntityMng {
 	 * <span style="color:red">注意 : </span>如果有查询的字段名字一样的需要给字段指定别名。<br>
 	 * 此方法一般用于查询跨多表的字段，无需另外写pojo类存数据。
 	 * 
-	 * @param dbId
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public List< Map< String, Object >> querySql(String dbId, String sql, List<Object> param) throws Exception;
 
@@ -268,9 +230,6 @@ public interface BaseEntityMng {
 	 * 
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public List< Map< String, Object >> querySqlToLowerCase(String sql, List<Object> param) throws Exception;
 
@@ -281,12 +240,8 @@ public interface BaseEntityMng {
 	 * 返回map的键值转换为小写,屏蔽了oracle数据库差异问题<br>
 	 * 此方法一般用于查询跨多表的字段，无需另外写pojo类存数据。
 	 * 
-	 * @param dbId
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public List< Map< String, Object >> querySqlToLowerCase(String dbId, String sql, List<Object> param)
 	        throws Exception;
@@ -301,9 +256,6 @@ public interface BaseEntityMng {
 	 * 
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public Map< String, Object > querySqlSol(String sql, List<Object> param) throws Exception;
 
@@ -314,12 +266,8 @@ public interface BaseEntityMng {
 	 * style="color:red">org.hibernate.NonUniqueResultException</span><br>
 	 * 此方法一般用于查询跨多表的字段，无需另外写pojo类存数据。
 	 * 
-	 * @param dbId
 	 * @param sql
 	 * e.g : select * from ctp_user
-	 * @param param
-	 * @return
-	 * @throws Exception
 	 */
 	public Map< String, Object > querySqlSol(String dbId, String sql, List<Object> param) throws Exception;
 
@@ -334,7 +282,6 @@ public interface BaseEntityMng {
 	 * @param param
 	 * sql 参数的值
 	 * @return 操作所影响的行数
-	 * @throws Exception
 	 */
 	public int querySqlUD(String sql, List<Object> param) throws Exception;
 
@@ -342,34 +289,22 @@ public interface BaseEntityMng {
 	 * 执行sql语句更新或者删除<br>
 	 * querySqlUpdate or Delete
 	 * 
-	 * @param dbId
 	 * @param sql
 	 * update ctp_user set name=? where id=? <br>
 	 * delete ctp_user where id=?
-	 * @param param
 	 * @return 操作所影响的行数
-	 * @throws Exception
 	 */
 	public int querySqlUD(String dbId, String sql, List<Object> param) throws Exception;
 
 	/**
 	 * 分页查询
 	 * 
-	 * @param classType
-	 * @param firstRow
-	 * @param pageSize
-	 * @return
 	 */
 	public <T extends Entity> List< T > getPagedObj(Class<T> classType, int firstRow, int pageSize);
 
 	/**
 	 * 分页查询
 	 * 
-	 * @param dbId
-	 * @param classType
-	 * @param firstRow
-	 * @param pageSize
-	 * @return
 	 */
 	public <T extends Entity> List< T > getPagedObj(String dbId, Class<T> classType, int firstRow, int pageSize);
 
@@ -378,11 +313,6 @@ public interface BaseEntityMng {
 	 * 
 	 * from classType.getSimpleName() as obj where 1=1 condition
 	 * 
-	 * @param classType
-	 * @param firstRow
-	 * @param pageSize
-	 * @param condition
-	 * @return
 	 */
 	public <T extends Entity> List< T > getPagedObjByCondition(Class<T> classType, int firstRow, int pageSize,
 															   String condition) throws Exception;
@@ -390,12 +320,6 @@ public interface BaseEntityMng {
 	/**
 	 * 分页查询 加条件 from classType.getSimpleName() as obj where 1=1 condition
 	 * 
-	 * @param dbId
-	 * @param classType
-	 * @param firstRow
-	 * @param pageSize
-	 * @param condition
-	 * @return
 	 */
 	public <T extends Entity> List< T > getPagedObjByCondition(String dbId, Class<T> classType, int firstRow,
 															   int pageSize, String condition) throws Exception;
@@ -406,8 +330,6 @@ public interface BaseEntityMng {
 	 * 
 	 * @param classType
 	 * Class T
-	 * @param condition
-	 * @return
 	 */
 	public <T extends Entity> Long getAllObjCountByCondition(Class<T> classType, String condition);
 
@@ -415,11 +337,8 @@ public interface BaseEntityMng {
 	 * 用默认数据库<br>
 	 * 获取总共记录条数加上条件
 	 * 
-	 * @param dbId
 	 * @param classType
 	 * Class T
-	 * @param condition
-	 * @return
 	 */
 	public <T extends Entity> Long getAllObjCountByCondition(String dbId, Class<T> classType, String condition);
 
@@ -427,52 +346,30 @@ public interface BaseEntityMng {
 	 * 用默认数据库<br>
 	 * 获取总共记录条数加上条件
 	 * 
-	 * @param className
-	 * @param condition
-	 * @return
 	 */
 	public Long getAllObjCountByCondition(String className, String condition);
 
 	/**
 	 * 获取总共记录条数加上条件
 	 * 
-	 * @param dbId
-	 * @param className
-	 * @param condition
-	 * @return
 	 */
 	public Long getAllObjCountByCondition(String dbId, String className, String condition);
 
 	/**
 	 * 通过hql获取单条数据 如果数据为多条，返回第一条记录
 	 * 
-	 * @param hql
-	 * @param param
-	 * @return
 	 */
 	public <T extends Entity> T getSingleObjByHql(String hql, List<Object> param) throws Exception;
 
 	/**
 	 * 通过hql获取单条数据 如果数据为多条，返回第一条记录
 	 * 
-	 * @param String
-	 * dbId
-	 * @param hql
-	 * @param param
-	 * @return
 	 */
 	public <T extends Entity> T getSingleObjByHql(String dbId, String hql, List<Object> param) throws Exception;
 
 	/**
 	 * 获取一定条件下和经过排序的分页对象
 	 * 
-	 * @param dbId
-	 * @param className
-	 * @param condition
-	 * @param firstRow
-	 * @param pageSize
-	 * @param order
-	 * @return
 	 */
 	public <T extends Entity> List< T > getPagedObjOrdered(String dbId, String className, String condition,
 														   int firstRow, int pageSize, String order);

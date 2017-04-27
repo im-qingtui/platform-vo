@@ -9,8 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>im.qingtui.platform</groupId>
-    <artifactId>qt-platform-utils</artifactId>
+    <artifactId>qt-platform-redis</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>im.qingtui.platform</groupId>
+            <artifactId>qt-platform-core</artifactId>
+            <version>${im.qingtui.platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
