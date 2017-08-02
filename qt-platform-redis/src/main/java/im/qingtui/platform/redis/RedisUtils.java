@@ -38,7 +38,7 @@ public class RedisUtils {
         initConnetion();
     }
 
-    public RedisUtils(String host,String auth) {
+    public RedisUtils(String host, String auth) {
         this.redisAddr = host;
         this.auth = auth;
         initConnetion();
@@ -49,7 +49,7 @@ public class RedisUtils {
      */
     private void initConnetion() {
 
-        for (int i = 1; pool == null && i<100; i++) {
+        for (int i = 1; pool == null && i < 100; i++) {
             if (i % 50 == 0) {
                 try {
                     Thread.sleep(5000);
@@ -70,7 +70,7 @@ public class RedisUtils {
                 pool = new JedisPool(config, redisAddr);
             }
         }
-        if(pool ==null){
+        if (pool == null) {
             throw new RuntimeException("redisPool init faild.");
         }
     }
@@ -87,7 +87,7 @@ public class RedisUtils {
      */
     public synchronized Jedis getJedis(int index) {
         Jedis resource = null;
-        for (int i = 1; resource == null && i<100; i++) {
+        for (int i = 1; resource == null && i < 100; i++) {
             if (i % 50 == 0) {
                 try {
                     Thread.sleep(5000);
@@ -98,7 +98,7 @@ public class RedisUtils {
             try {
                 resource = pool.getResource();
                 resource.auth(auth);
-                if(index>=0){
+                if (index >= 0) {
                     resource.select(index);
                 }
                 return resource;
@@ -106,7 +106,7 @@ public class RedisUtils {
                 log.error("获取jedis异常", e);
             }
         }
-        if(resource == null){
+        if (resource == null) {
             throw new RuntimeException("get jedis faild.");
         }
         return resource;

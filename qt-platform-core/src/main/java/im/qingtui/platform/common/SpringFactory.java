@@ -20,9 +20,6 @@ public class SpringFactory implements ApplicationContextAware {
 
     /**
      * 根据bean id 获取相应实体
-     * 
-     * @param id
-     * @return
      */
     public static Object getObject(String id) {
         Object object = null;

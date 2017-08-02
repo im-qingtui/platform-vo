@@ -4,15 +4,14 @@ import im.qingtui.platform.hibernate.datamng.BaseDataMng;
 import im.qingtui.platform.hibernate.model.Entity;
 import im.qingtui.platform.hibernate.model.Root;
 import im.qingtui.platform.utils.UuidUtils;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -36,8 +35,9 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public String saveObj(String dbId, Root r) throws Exception {
-        if (r.getId() == null)
+        if (r.getId() == null) {
             r.setId(UuidUtils.getUUID());
+        }
         long now = System.currentTimeMillis();
         r.setCreatetime(now);
         r.setUpdatetime(now);
@@ -76,13 +76,14 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public <T extends Root> List<T> getPagedObj(String dbId, String className, String condition, int firstRow,
-                                                int pageSize) {
+        int pageSize) {
         Query q = null;
         if (condition == null || condition.trim().equals("")) {
             q = this.getSession(dbId).createQuery("from " + className + " as obj order by obj.createTime desc");
-        } else
+        } else {
             q = this.getSession(dbId).createQuery(
-                    "from " + className + " as obj where 1=1 and " + condition + " order by obj.createTime desc");
+                "from " + className + " as obj where 1=1 and " + condition + " order by obj.createTime desc");
+        }
 
         if (pageSize != -1) {
             q.setFirstResult(firstRow);
@@ -111,7 +112,7 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public <T extends Entity> List<T> getPagedObjOrdered(String dbId, String className, String condition, int firstRow,
-                                                         int pageSize, String order) {
+        int pageSize, String order) {
         Query q = null;
         if (condition == null || condition.trim().equals("")) {
             if (order == null || order.trim().equals("")) {
@@ -122,10 +123,10 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
         } else {
             if (order == null || order.trim().equals("")) {
                 q = this.getSession(dbId).createQuery(
-                        "from " + className + " as obj where 1=1 and " + condition + " order by obj.createTime desc");
+                    "from " + className + " as obj where 1=1 and " + condition + " order by obj.createTime desc");
             } else {
                 q = this.getSession(dbId).createQuery(
-                        "from " + className + " as obj where 1=1 and " + condition + " " + order);
+                    "from " + className + " as obj where 1=1 and " + condition + " " + order);
             }
         }
 
@@ -141,7 +142,7 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
         String queryString = "";
         if (condition != null && !condition.trim().equals("")) {
             queryString = "from " + className + " as obj where 1=1 and (" + condition + ")"
-                    + " order by obj.createTime desc";
+                + " order by obj.createTime desc";
         } else {
             queryString = "from " + className + " as obj where 1=1 " + " order by obj.createTime desc";
         }
@@ -166,7 +167,7 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public <T extends Root> List<T> getPagedObjOrdered(String className, String condition, int firstRow, int pageSize,
-                                                       String order) {
+        String order) {
         return getPagedObjOrdered(null, className, condition, firstRow, pageSize, order);
     }
 
@@ -278,19 +279,19 @@ public class BaseDataMngImpl extends BaseEntityMngImpl implements BaseDataMng {
 
     @Override
     public <T extends Root> List<T> getPagedObj(String dbId, Class<T> classType, String condition, int firstRow,
-                                                int pageSize) {
+        int pageSize) {
         return getPagedObj(dbId, classType.getSimpleName(), condition, firstRow, pageSize);
     }
 
     @Override
     public <T extends Root> List<T> getPagedObjOrdered(Class<T> classType, String condition, int firstRow,
-                                                       int pageSize, String order) {
+        int pageSize, String order) {
         return getPagedObjOrdered(classType.getSimpleName(), condition, firstRow, pageSize, order);
     }
 
     @Override
     public <T extends Root> List<T> getPagedObjOrdered(String dbId, Class<T> classType, String condition, int firstRow,
-                                                       int pageSize, String order) {
+        int pageSize, String order) {
         return getPagedObjOrdered(dbId, classType.getSimpleName(), condition, firstRow, pageSize, order);
     }
 

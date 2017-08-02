@@ -1,10 +1,9 @@
 package im.qingtui.platform.hibernate.dao.impl;
 
-import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-
 import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 public class BaseDaoImpl<T, ID extends Serializable> implements im.qingtui.platform.hibernate.dao.BaseDao<T, ID> {
 

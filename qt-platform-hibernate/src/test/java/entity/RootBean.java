@@ -1,8 +1,10 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import org.hibernate.annotations.PolymorphismType;
-
-import javax.persistence.*;
 
 /**
  * Created by sunny on 16/7/26.

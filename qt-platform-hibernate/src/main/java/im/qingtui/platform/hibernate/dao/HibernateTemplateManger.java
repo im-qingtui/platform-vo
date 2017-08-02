@@ -2,12 +2,11 @@ package im.qingtui.platform.hibernate.dao;
 
 import im.qingtui.platform.common.SpringFactory;
 import im.qingtui.platform.constants.Global;
+import java.util.HashMap;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
-
-import java.util.HashMap;
 
 /**
  * HibernateTemplate工厂类，根据dbId获取HibernateTemplate，并提供获取和设置defaultDB的方法

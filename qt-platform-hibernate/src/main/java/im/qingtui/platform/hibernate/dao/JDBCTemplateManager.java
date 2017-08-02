@@ -2,12 +2,11 @@ package im.qingtui.platform.hibernate.dao;
 
 import im.qingtui.platform.common.SpringFactory;
 import im.qingtui.platform.constants.Global;
+import java.util.HashMap;
+import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
-import java.util.HashMap;
 
 /**
  * Sping JDBCTemplate工厂类，根据dbId获取JDBCTemplate
@@ -28,7 +27,6 @@ public class JDBCTemplateManager {
 
     /**
      * 静态实例化方法，只会生成一个JDBCTemplateManager实例
-     *
      */
     static public JDBCTemplateManager getInstance() {
         if (instance == null) {
@@ -40,7 +38,6 @@ public class JDBCTemplateManager {
 
     /**
      * 获取默认JDBCTemplate
-     *
      */
     public JdbcTemplate getTemplate() {
         return getTemplate(null);
@@ -48,7 +45,6 @@ public class JDBCTemplateManager {
 
     /**
      * 根据datasourceId获取JDBCTemplate
-     *
      */
     public JdbcTemplate getTemplate(String datasourceId) {
         if (datasourceId == null) {

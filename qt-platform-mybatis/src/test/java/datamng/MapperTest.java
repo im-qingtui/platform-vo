@@ -12,7 +12,7 @@ import service.UserService;
  * Created by sunny on 16/7/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:/conf/core.xml", "classpath:/conf/qt-platform-mybatis.xml","classpath:/conf/mybatis-test.xml"})
+@ContextConfiguration(locations = {"classpath*:/conf/core.xml", "classpath:/conf/qt-platform-mybatis.xml", "classpath:/conf/mybatis-test.xml"})
 public class MapperTest {
 
     @Autowired

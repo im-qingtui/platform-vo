@@ -16,7 +16,6 @@ public class TemplateFactory {
 
     /**
      * 获取默认的HibernateTemplate
-     *
      */
     public static HibernateTemplate getDefaultHibernateTemplate() {
         return im.qingtui.platform.hibernate.dao.HibernateTemplateManger.getInstance().getHibernateTemplateById(null);
@@ -24,7 +23,6 @@ public class TemplateFactory {
 
     /**
      * 根据dbId(sessionFactoryId)获取HibernateTemplate
-     *
      */
     public static HibernateTemplate getHibernateTemplate(String dbId) {
         return HibernateTemplateManger.getInstance().getHibernateTemplateById(dbId);
@@ -32,7 +30,6 @@ public class TemplateFactory {
 
     /**
      * 获取默认JdbcTemplate
-     *
      */
     public static JdbcTemplate getDefaultJDBCTemplate() {
         return JDBCTemplateManager.getInstance().getTemplate(null);
@@ -40,7 +37,6 @@ public class TemplateFactory {
 
     /**
      * 根据datasourceId获取JdbcTemplate
-     *
      */
     public static JdbcTemplate getJDBCTemplate(String datasourceId) {
         return JDBCTemplateManager.getInstance().getTemplate(datasourceId);

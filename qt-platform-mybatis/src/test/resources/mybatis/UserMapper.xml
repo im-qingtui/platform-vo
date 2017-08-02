@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.UserMapper">
 
-    <insert id="saveUser" parameterType="entity.UserEntity">
-        insert into UserEntity(username, password,createtime,updatetime) values(#{username}, #{password},#{createtime},#{updatetime})
-    </insert>
+  <insert id="saveUser" parameterType="entity.UserEntity">
+    insert into UserEntity(username, password,createtime,updatetime) values(#{username}, #{password},#{createtime},#{updatetime})
+  </insert>
 
-    <select id="getUserList" resultType="entity.UserEntity">
-        SELECT t.username ,t.password FROM `userentity` t
-    </select>
+  <select id="getUserList" resultType="entity.UserEntity">
+    SELECT t.username ,t.password FROM `userentity` t
+  </select>
 
 </mapper>
