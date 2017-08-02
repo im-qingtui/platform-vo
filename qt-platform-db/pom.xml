@@ -5,7 +5,7 @@
     <parent>
         <artifactId>qt-platform</artifactId>
         <groupId>im.qingtui.platform</groupId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>im.qingtui.platform</groupId>
             <artifactId>qt-platform-core</artifactId>
-            <version>1.0.6</version>
+            <version>1.0.7</version>
             <scope>provided</scope>
         </dependency>
 
