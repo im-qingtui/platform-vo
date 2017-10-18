@@ -3,21 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>im.qingtui.platform</groupId>
-  <artifactId>qt-platform</artifactId>
-  <version>1.0.7</version>
+  <artifactId>platform-root</artifactId>
+  <version>2.0.0</version>
   <packaging>pom</packaging>
-  <name>qt-platform</name>
+  <name>platform-root</name>
 
   <modules>
-    <module>qt-platform-core</module>
-    <module>qt-platform-hibernate</module>
-    <module>qt-platform-mybatis</module>
-    <module>qt-platform-dubbox</module>
-    <module>qt-platform-utils</module>
-    <module>qt-platform-web</module>
-    <module>qt-platform-db</module>
-    <module>qt-platform-redis</module>
-    <module>qt-platform-sensitive</module>
+    <module>platform-core</module>
+    <module>platform-hibernate</module>
+    <module>platform-mybatis</module>
+    <module>platform-dubbox</module>
+    <module>platform-utils</module>
+    <module>platform-web</module>
+    <module>platform-db</module>
+    <module>platform-redis</module>
+    <module>platform-sensitive</module>
   </modules>
 
   <properties>
