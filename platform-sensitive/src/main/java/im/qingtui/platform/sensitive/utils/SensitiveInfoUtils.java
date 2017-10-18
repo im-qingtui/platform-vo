@@ -11,7 +11,7 @@ public class SensitiveInfoUtils {
      * 隐藏部分信息
      *
      * @param object 被部分隐藏信息的对象
-     * @param rate 被隐藏的比例
+     * @param rate   被隐藏的比例
      * @return 隐藏部分信息后的字符串
      */
     public static String incomplete(Object object, double rate) {

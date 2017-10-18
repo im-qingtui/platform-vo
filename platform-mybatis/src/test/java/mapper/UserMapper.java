@@ -1,6 +1,7 @@
 package mapper;
 
-import entity.UserEntity;
+import entity.User;
+
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    void saveUser(UserEntity user);
+    void saveUser(User user);
 
-    List<UserEntity> getUserList();
+    List<User> getUserList();
 }

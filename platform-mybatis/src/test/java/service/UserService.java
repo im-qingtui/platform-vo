@@ -1,6 +1,7 @@
 package service;
 
-import entity.UserEntity;
+import entity.User;
+
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    public void saveUser(UserEntity user);
+    public void saveUser(User user);
 
-    public List<UserEntity> getUserList();
+    public List<User> getUserList();
 }

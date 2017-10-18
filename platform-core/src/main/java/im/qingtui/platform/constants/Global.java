@@ -1,7 +1,7 @@
 package im.qingtui.platform.constants;
 
 /**
- * @author: hongya  Date: 16/7/23
+ * 基础平台常量结合类
  */
 public class Global {
 

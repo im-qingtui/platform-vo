@@ -1,6 +1,6 @@
 package datamng;
 
-import entity.UserEntity;
+import entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import service.UserService;
  * Created by sunny on 16/7/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:/conf/core.xml", "classpath:/conf/platform-mybatis.xml", "classpath:/conf/mybatis-test.xml"})
+@ContextConfiguration(locations = {"classpath*:/META-INF/spring/*.xml"})
 public class MapperTest {
 
     @Autowired
@@ -20,11 +20,11 @@ public class MapperTest {
 
     @Test
     public void saveUser() throws Exception {
-        UserEntity ue = new UserEntity();
-        ue.setUsername("u1");
+        User ue = new User();
+        ue.setName("u1");
         ue.setPassword("1");
-        ue.setCreatetime(System.currentTimeMillis());
-        ue.setUpdatetime(System.currentTimeMillis());
+        ue.setCreateTime(System.currentTimeMillis());
+        ue.setUpdateTime(System.currentTimeMillis());
         userService.saveUser(ue);
     }
 

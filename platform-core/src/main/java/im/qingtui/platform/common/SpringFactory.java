@@ -25,7 +25,7 @@ public class SpringFactory implements ApplicationContextAware {
      */
     public static <T> T getObject(String id) {
         Object object = context.getBean(id);
-        return (T)object;
+        return (T) object;
     }
 
     /**

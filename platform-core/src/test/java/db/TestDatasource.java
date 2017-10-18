@@ -1,13 +1,14 @@
 package db;
 
 import im.qingtui.platform.common.SpringFactory;
-import java.sql.SQLException;
-import javax.sql.DataSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * @author: hongya  Date: 16/7/23

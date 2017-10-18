@@ -3,10 +3,9 @@ package im.qingtui.platform.utils;
 import java.util.UUID;
 
 /**
- *
  * 生成全球唯一uuid
  *
- * @author Peter
+ * @author bowen
  */
 public class UuidUtils {
 
@@ -20,7 +19,7 @@ public class UuidUtils {
     /**
      * 生成大写无-分隔uuid
      */
-    public static String getUpperUUID(){
+    public static String getUpperUUID() {
         String uuid = UUID.randomUUID().toString().toUpperCase();
         return uuid.replaceAll("-", "");
     }
@@ -28,7 +27,7 @@ public class UuidUtils {
     /**
      * 生成小写无-分隔uuid
      */
-    public static String getLowerUUID(){
+    public static String getLowerUUID() {
         String uuid = UUID.randomUUID().toString().toLowerCase();
         return uuid.replaceAll("-", "");
     }
