@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +18,7 @@ import java.util.Properties;
  * @author bowen
  */
 @Slf4j
-public class SysConfigPlaceholder extends PropertyPlaceholderConfigurer {
+public class SysConfigPlaceholder extends PropertyPlaceholderConfigurer implements BeanDefinitionRegistryPostProcessor {
 
     private static Map<String, Object> ctxPropertiesMap = new HashMap<String, Object>();
 
@@ -59,4 +61,7 @@ public class SysConfigPlaceholder extends PropertyPlaceholderConfigurer {
         return Boolean.parseBoolean(getStringProperty(key));
     }
 
+    public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry beanDefinitionRegistry) throws BeansException {
+
+    }
 }

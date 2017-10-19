@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.UserService;
 
-import java.util.List;
-
 /**
  * Created by sunny on 16/7/26.
  */
@@ -20,10 +18,6 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(User user) {
         userMapper.saveUser(user);
-    }
-
-    public List<User> getUserList() {
-        return userMapper.getUserList();
     }
 
 }

@@ -12,7 +12,7 @@ import service.UserService;
  * Created by sunny on 16/7/26.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:/META-INF/spring/*.xml"})
+@ContextConfiguration(locations = {"classpath*:/META-INF/spring/*.xml", "classpath:spring-mybatis.xml"})
 public class MapperTest {
 
     @Autowired
@@ -26,11 +26,6 @@ public class MapperTest {
         ue.setCreateTime(System.currentTimeMillis());
         ue.setUpdateTime(System.currentTimeMillis());
         userService.saveUser(ue);
-    }
-
-    @Test
-    public void getUserList() {
-        System.out.println(userService.getUserList());
     }
 
 }

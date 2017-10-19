@@ -16,7 +16,7 @@ public class SysConfigPlaceholderTest {
     @Test
     public void testProps() {
         System.out.println(SysConfigPlaceholder.getStringProperty("jdbc.url"));
-        System.out.println(SysConfigPlaceholder.getStringProperty("druid.maxOpenPreparedStatements"));
+        System.out.println(SysConfigPlaceholder.getStringProperty("druid.maxActive"));
         System.out.println(SysConfigPlaceholder.getStringProperty("mybatis.mapper.basepackage"));
     }
 

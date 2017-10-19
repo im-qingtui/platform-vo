@@ -34,7 +34,7 @@
         <mysql-connector-java.version>5.1.16</mysql-connector-java.version>
         <com.alibaba.druid.version>1.1.4</com.alibaba.druid.version>
         <org.mybatis.version>3.2.1</org.mybatis.version>
-        <org.mybatis.mybatis-spring.version>1.2.3</org.mybatis.mybatis-spring.version>
+        <org.mybatis.mybatis-spring.version>1.3.1</org.mybatis.mybatis-spring.version>
         <org.hibernate.hibernate-core.version>3.6.10.Final</org.hibernate.hibernate-core.version>
         <org.hibernate.annotations.version>3.5.6-Final</org.hibernate.annotations.version>
     </properties>
@@ -69,5 +69,44 @@
         <!-- junit -->
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--要将源码放上去，需要加入这个插件-->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

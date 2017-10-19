@@ -7,8 +7,4 @@
         #{password},#{createTime},#{updateTime})
     </insert>
 
-    <select id="getUserList" resultType="entity.User">
-        SELECT t.username ,t.password FROM `userentity` t
-    </select>
-
 </mapper>

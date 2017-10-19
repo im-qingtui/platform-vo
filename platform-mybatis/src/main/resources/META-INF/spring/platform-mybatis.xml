@@ -10,11 +10,4 @@
         <property name="mapperLocations" value="classpath*:mybatis/*.xml"/>
     </bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 递归搜索子路径 -->
-        <property name="basePackage" value="${mybatis.mapper.basepackage}"/>
-        <!-- 防止多数据源时，不能自动装配 -->
-        <property name="sqlSessionFactoryBeanName" value="mybatisSessionFactory"/>
-    </bean>
-
 </beans>

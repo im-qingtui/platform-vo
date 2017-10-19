@@ -13,12 +13,18 @@ import redis.clients.jedis.Jedis;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:/META-INF/spring/*.xml"})
-public class UnitTest {
+public class RedisUtilsTest {
 
     @Test
-    public void getJedis(){
-        Jedis jedis=RedisUtils.getJedis();
-        System.out.printf("test");
+    public void getJedis() {
+        Jedis jedis = RedisUtils.getJedis();
+        String key = "testkey";
+        String value = "testvalue";
+        jedis.set(key, value);
+        String redisValue = jedis.get(key);
+        System.out.println(value + "   " + redisValue);
+        jedis.del(key);
+        jedis.close();
     }
 
 }
