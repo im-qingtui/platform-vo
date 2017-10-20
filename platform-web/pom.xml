@@ -16,22 +16,7 @@
         <!-- Spring mvc -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument-tomcat</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc-portlet</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
         <!-- Spring mvc -->
