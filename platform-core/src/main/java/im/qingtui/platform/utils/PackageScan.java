@@ -1,5 +1,7 @@
 package im.qingtui.platform.utils;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +37,7 @@ public final class PackageScan {
      * @return 类集合
      */
     public static Set<Class<?>> getClasses(String packName) {
-        return getClassList(packName, true, null);
+        return getClassList(packName, true, true,null);
     }
 
     /**
@@ -47,7 +49,7 @@ public final class PackageScan {
      * @return 类集合
      */
     public static Set<Class<?>> getClassList(String pkgName, boolean isRecursive
-            , Class<? extends Annotation> annotation) {
+            ,boolean scanJar, Class<? extends Annotation> annotation) {
         // 第一个class类的集合
         Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -70,7 +72,7 @@ public final class PackageScan {
                     if ("file".equals(protocol)) {
                         // 本地自己可见的代码
                         findClassName(classes, pkgName, pkgPath, isRecursive, annotation);
-                    } else if ("jar".equals(protocol)) {
+                    } else if ("jar".equals(protocol) && scanJar) {
                         // 引用第三方jar的代码
                         try {
                             findClassName(classes, pkgName, url, isRecursive, annotation);
@@ -82,6 +84,25 @@ public final class PackageScan {
             }
         }
         return classes;
+    }
+
+    public static Set<Method> getMethodList(String pkgName, boolean isRecursive,boolean scanJar
+        , Class<? extends Annotation> annotation){
+        Set<Method> methodSet = new LinkedHashSet<Method>();
+        Set<Class<?>> classes = getClassList(pkgName,isRecursive,scanJar,null);
+        for(Class clazz :classes){
+            Method[] methods = clazz.getDeclaredMethods();
+            if(annotation ==null){
+                methodSet.addAll(Arrays.asList(methods));
+            }else {
+                for(Method method :methods){
+                    if(method.getAnnotation(annotation)!=null){
+                        methodSet.add(method);
+                    }
+                }
+            }
+        }
+        return methodSet;
     }
 
     private static void findClassName(Set<Class<?>> classes, String pkgName, String pkgPath, boolean isRecursive
@@ -179,8 +200,8 @@ public final class PackageScan {
             Class<?> clazz = null;
             try {
                 clazz = Class.forName(clazzName.replaceAll(".class", ""));
-            } catch (ClassNotFoundException e) {
-                System.out.println("");
+            } catch (Exception e) {
+                logger.error("包扫描异常", e);
             }
             if (clazz != null) {
                 if (annotation == null) {
