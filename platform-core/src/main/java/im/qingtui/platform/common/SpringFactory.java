@@ -29,6 +29,14 @@ public class SpringFactory implements ApplicationContextAware {
     }
 
     /**
+     * 根据bean class 获取相应实体
+     */
+    public static <T> T getObject(Class<T> clas) {
+        T object = context.getBean(clas);
+        return object;
+    }
+
+    /**
      * 获取spring上下文
      */
     public static ApplicationContext getApplicationContext() {
