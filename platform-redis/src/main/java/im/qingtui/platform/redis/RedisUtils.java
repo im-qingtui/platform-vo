@@ -71,13 +71,16 @@ public class RedisUtils {
     /**
      * 获取jedis连接
      */
-    public static synchronized Jedis getJedis(int index) {
+    public static synchronized Jedis getJedis(int db) {
         if (pool == null) {
             initConnetion();
         }
         Jedis jedis = pool.getResource();
         if (jedis == null) {
             throw new RuntimeException("get jedis faild.");
+        }
+        if (db > 0) {
+            jedis.select(db);
         }
         return jedis;
     }
