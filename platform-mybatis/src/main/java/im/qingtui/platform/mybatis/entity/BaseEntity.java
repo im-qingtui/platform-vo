@@ -8,7 +8,14 @@ import lombok.Data;
 @Data
 public class BaseEntity {
 
+    private long id;
     private long createTime;
-    private long updateTime;
+    private long modefyTime;
+
+    public BaseEntity() {
+        long currentTime = System.currentTimeMillis();
+        createTime = currentTime;
+        modefyTime = currentTime;
+    }
 
 }

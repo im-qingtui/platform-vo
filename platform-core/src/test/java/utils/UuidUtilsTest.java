@@ -10,9 +10,12 @@ import im.qingtui.platform.utils.UuidUtils;
 public class UuidUtilsTest {
 
     public static void main(String[] args) {
+        System.out.println("uuid位数 -> " + UuidUtils.getUUID().length());
         System.out.println("大写UUID -> " + UuidUtils.getUUID());
         System.out.println("大写UUID -> " + UuidUtils.getUpperUUID());
         System.out.println("小写UUID -> " + UuidUtils.getLowerUUID());
+
     }
+
 
 }
