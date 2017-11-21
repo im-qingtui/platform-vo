@@ -10,9 +10,9 @@
     <!-- 自动将标注 @Autowired 的 Bean 进行注入 -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
-    <tx:annotation-driven transaction-manager="defaultTransactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean name="defaultTransactionManager"
+    <bean name="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="defaultDataSource"></property>
     </bean>
