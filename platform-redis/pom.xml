@@ -9,72 +9,33 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>platform-redis</artifactId>
+  <artifactId>platform-redis</artifactId>
 
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://maven.dev.qingtui.im:8081/nexus/content/repositories/releases</url>
-        </repository>
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>http://maven.dev.qingtui.im:8081/nexus/content/repositories/releases</url>
+    </repository>
 
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://maven.dev.qingtui.im:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>http://maven.dev.qingtui.im:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>im.qingtui.platform</groupId>
-            <artifactId>platform-core</artifactId>
-            <version>${im.qingtui.platform.version}</version>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>im.qingtui.platform</groupId>
+      <artifactId>platform-core</artifactId>
+      <version>${im.qingtui.platform.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!--要将源码放上去，需要加入这个插件-->
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                    <charset>UTF-8</charset>
-                    <encoding>UTF-8</encoding>
-                    <docencoding>UTF-8</docencoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <dependency>
+      <artifactId>jedis</artifactId>
+      <groupId>redis.clients</groupId>
+      <version>2.7.3</version>
+    </dependency>
+  </dependencies>
 
 
 </project>

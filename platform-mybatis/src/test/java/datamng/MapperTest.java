@@ -24,7 +24,7 @@ public class MapperTest {
         ue.setName("u1");
         ue.setPassword("1");
         ue.setCreateTime(System.currentTimeMillis());
-        ue.setUpdateTime(System.currentTimeMillis());
+        ue.setModefyTime(System.currentTimeMillis());
         userService.saveUser(ue);
     }
 

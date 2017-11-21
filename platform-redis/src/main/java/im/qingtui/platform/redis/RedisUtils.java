@@ -23,6 +23,8 @@ public class RedisUtils {
 
     private static int port;
 
+    private static int defaultDb;
+
     // 可用连接实例的最大数目，默认值为8；
     // 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
     private static int maxActive;
@@ -42,6 +44,7 @@ public class RedisUtils {
         maxActive = SysConfigPlaceholder.getIntProperty("redis.max.active");
         maxIdle = SysConfigPlaceholder.getIntProperty("redis.max.idle");
         maxWait = SysConfigPlaceholder.getIntProperty("redis.max.wait");
+        defaultDb = SysConfigPlaceholder.getIntProperty("redis.default.db");
         initConnetion();
     }
 
@@ -65,7 +68,7 @@ public class RedisUtils {
      * 获取jedis连接
      */
     public static synchronized Jedis getJedis() {
-        return getJedis(-1);
+        return getJedis(defaultDb);
     }
 
     /**
@@ -86,9 +89,7 @@ public class RedisUtils {
     }
 
     /**
-     * @deprecated {@link Jedis#close()}
-     * <p>
-     * 返回到连接池
+     * @deprecated {@link Jedis#close()} <p> 返回到连接池
      */
     public void returnResource(final Jedis jedis) {
         if (jedis != null) {
