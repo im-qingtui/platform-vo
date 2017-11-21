@@ -6,11 +6,11 @@
     <parent>
         <groupId>im.qingtui.platform</groupId>
         <artifactId>platform-root</artifactId>
-        <version>2.0.3</version>
+        <version>2.0.4</version>
     </parent>
 
     <artifactId>platform-core</artifactId>
-    <version>2.0.3</version>
+    <version>2.0.4</version>
     <name>platform-core</name>
     <packaging>jar</packaging>
 
