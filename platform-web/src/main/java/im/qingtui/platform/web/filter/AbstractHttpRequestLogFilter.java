@@ -25,6 +25,8 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractHttpRequestLogFilter.class);
 
+    private HttpConfig httpConfig;
+
     public void destroy() {
     }
 
@@ -38,8 +40,6 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
     }
 
     protected void httpRequestLog(HttpServletRequest request) {
-        HttpConfigBuilder builder = new HttpConfigBuilder();
-        HttpConfig httpConfig = config(builder);
         if (httpConfig != null && !excluded(httpConfig, request)) {
             LOGGER.info(HttpUtils.getHttpRequestProperties(request, httpConfig).toString());
         }
@@ -65,7 +65,8 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
     protected abstract HttpConfig config(HttpConfigBuilder builder);
 
     public void init(FilterConfig config) throws ServletException {
-
+        HttpConfigBuilder builder = new HttpConfigBuilder();
+        httpConfig = config(builder);
     }
 
 }

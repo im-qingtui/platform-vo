@@ -24,7 +24,6 @@ public class HttpConfig {
     @HttpElement
     private boolean method;
 
-    @HttpElement
     private List<String> excludedUri = new ArrayList<String>();
 
     private List<String> sensitiveInfo = new ArrayList<String>();
