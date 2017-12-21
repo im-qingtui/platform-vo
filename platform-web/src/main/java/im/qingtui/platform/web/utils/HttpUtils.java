@@ -1,6 +1,7 @@
 package im.qingtui.platform.web.utils;
 
 
+import im.qingtui.platform.sensitive.SensitiveLevel;
 import im.qingtui.platform.sensitive.utils.SensitiveInfoUtils;
 import im.qingtui.platform.web.annotation.HttpElement;
 import java.lang.reflect.Field;
@@ -8,6 +9,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +40,7 @@ public class HttpUtils {
             String paramName = (String) parameterNames.nextElement();
             String paramValue = request.getParameter(paramName);
             //过滤敏感信息
-            sensitiveFilter(paramName, paramValue, parameterBuilder, httpConfig.getSensitiveInfo(), httpConfig.getSensitiveRate());
+            sensitiveFilter(paramName, paramValue, parameterBuilder, httpConfig.getSensitiveInfo());
         }
         if (parameterBuilder.length() > 1) {
             parameterBuilder.deleteCharAt(parameterBuilder.length() - 1);
@@ -50,7 +52,7 @@ public class HttpUtils {
         while (headerNames.hasMoreElements()) {
             String headerName = (String) headerNames.nextElement();
             String headerValue = request.getHeader(headerName);
-            sensitiveFilter(headerName, headerValue, headerBuilder, httpConfig.getSensitiveInfo(), httpConfig.getSensitiveRate());
+            sensitiveFilter(headerName, headerValue, headerBuilder, httpConfig.getSensitiveInfo());
             headerBuilder.append(headerName).append(":").append(headerValue);
             headerBuilder.append(",");
 
@@ -88,10 +90,13 @@ public class HttpUtils {
         fullMap.put("method", method);
     }
 
-    private static void sensitiveFilter(String paramName, String paramValue, StringBuilder parameterBuilder, List<String> sensitiveParams, double rate) {
-        for (String sensitiveParam : sensitiveParams) {
-            if (paramName.toLowerCase().contains(sensitiveParam)) {
-                paramValue = SensitiveInfoUtils.incomplete(paramValue, rate);
+    private static void sensitiveFilter(String paramName, String paramValue, StringBuilder parameterBuilder, Set<SensitiveParam> sensitiveParams) {
+        for (SensitiveParam sensitiveParam : sensitiveParams) {
+            if (paramName.toLowerCase().contains(sensitiveParam.getParamName())) {
+                if(sensitiveParam.getLevel() == SensitiveLevel.HIDE){
+                    return;
+                }
+                paramValue = SensitiveInfoUtils.incomplete(paramValue, sensitiveParam.getRate());
                 break;
             }
         }

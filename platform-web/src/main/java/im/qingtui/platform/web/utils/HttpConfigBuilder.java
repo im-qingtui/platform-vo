@@ -2,9 +2,10 @@ package im.qingtui.platform.web.utils;
 
 
 import im.qingtui.platform.sensitive.SensitiveInfo;
-import java.util.ArrayList;
+import im.qingtui.platform.sensitive.SensitiveLevel;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by leesir on 2017/6/14.
@@ -52,9 +53,11 @@ public class HttpConfigBuilder {
      * @return HttpConfig配置创建器
      */
     public HttpConfigBuilder excludedUri(String... uri){
-        List<String> uris = new ArrayList<String>();
-        uris.addAll(Arrays.asList(uri));
-        this.httpConfig.setExcludedUri(uris);
+        if(uri != null){
+            Set<String> uris = new HashSet<String>();
+            uris.addAll(Arrays.asList(uri));
+            this.httpConfig.getExcludedUri().addAll(uris);
+        }
         return this;
     }
 
@@ -76,10 +79,30 @@ public class HttpConfigBuilder {
      * @return HttpConfig配置创建器
      */
     public HttpConfigBuilder sensitiveInfo(double rate, String... sensitives) {
-        List<String> list = new ArrayList<String>();
-        list.addAll(Arrays.asList(sensitives));
-        this.httpConfig.setSensitiveInfo(list);
-        this.httpConfig.setSensitiveRate(rate);
+        return sensitiveInfo(rate,SensitiveLevel.INCOMPLETE,sensitives);
+    }
+
+    /**
+     * 配置需要被排除的敏感信息
+     * @param params 被排除的关键词，请求参数或请求头包含（注意不是全匹配）这些关键词时将被忽略打印
+     * @return HttpConfig配置创建器
+     */
+    public HttpConfigBuilder excludedParam(String... params){
+        return sensitiveInfo(0,SensitiveLevel.HIDE,params);
+    }
+
+    private HttpConfigBuilder sensitiveInfo(double rate, SensitiveLevel level, String... sensitives) {
+        if(sensitives != null){
+            Set<SensitiveParam> set = new HashSet<SensitiveParam>();
+            for(String sensitive : sensitives){
+                SensitiveParam sensitiveParam = new SensitiveParam();
+                sensitiveParam.setParamName(sensitive);
+                sensitiveParam.setLevel(level);
+                sensitiveParam.setRate(rate);
+                set.add(sensitiveParam);
+            }
+            this.httpConfig.getSensitiveInfo().addAll(set);
+        }
         return this;
     }
 }

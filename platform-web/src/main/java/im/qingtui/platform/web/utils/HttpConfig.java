@@ -2,7 +2,9 @@ package im.qingtui.platform.web.utils;
 
 import im.qingtui.platform.web.annotation.HttpElement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by leesir on 2017/6/14.
@@ -24,11 +26,9 @@ public class HttpConfig {
     @HttpElement
     private boolean method;
 
-    private List<String> excludedUri = new ArrayList<String>();
+    private Set<String> excludedUri = new HashSet<String>();
 
-    private List<String> sensitiveInfo = new ArrayList<String>();
-
-    private double sensitiveRate;
+    private Set<SensitiveParam> sensitiveInfo = new HashSet<SensitiveParam>();
 
     HttpConfig() {
 
@@ -74,27 +74,19 @@ public class HttpConfig {
         this.method = method;
     }
 
-    public List<String> getSensitiveInfo() {
+    public Set<SensitiveParam> getSensitiveInfo() {
         return sensitiveInfo;
     }
 
-    public void setSensitiveInfo(List<String> sensitiveInfo) {
+    public void setSensitiveInfo(Set<SensitiveParam> sensitiveInfo) {
         this.sensitiveInfo = sensitiveInfo;
     }
 
-    public double getSensitiveRate() {
-        return sensitiveRate;
-    }
-
-    public void setSensitiveRate(double sensitiveRate) {
-        this.sensitiveRate = sensitiveRate;
-    }
-
-    public List<String> getExcludedUri() {
+    public Set<String> getExcludedUri() {
         return excludedUri;
     }
 
-    public void setExcludedUri(List<String> excludedUri) {
+    public void setExcludedUri(Set<String> excludedUri) {
         this.excludedUri = excludedUri;
     }
 }
