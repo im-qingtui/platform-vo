@@ -24,6 +24,9 @@ public class HttpConfig {
     @HttpElement
     private boolean method;
 
+    @HttpElement
+    private List<String> excludedUri = new ArrayList<String>();
+
     private List<String> sensitiveInfo = new ArrayList<String>();
 
     private double sensitiveRate;
@@ -86,5 +89,13 @@ public class HttpConfig {
 
     public void setSensitiveRate(double sensitiveRate) {
         this.sensitiveRate = sensitiveRate;
+    }
+
+    public List<String> getExcludedUri() {
+        return excludedUri;
+    }
+
+    public void setExcludedUri(List<String> excludedUri) {
+        this.excludedUri = excludedUri;
     }
 }

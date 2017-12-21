@@ -47,6 +47,18 @@ public class HttpConfigBuilder {
     }
 
     /**
+     * 排除打印日志的uri
+     * @param uri 需要被排除的uri
+     * @return HttpConfig配置创建器
+     */
+    public HttpConfigBuilder excludedUri(String... uri){
+        List<String> uris = new ArrayList<String>();
+        uris.addAll(Arrays.asList(uri));
+        this.httpConfig.setExcludedUri(uris);
+        return this;
+    }
+
+    /**
      * 配置需要被过滤的敏感信息
      *
      * @param sensitives 被过滤的关键词，请求参数或请求头包含（注意不是全匹配）这些关键词时将被打码30%的内容

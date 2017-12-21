@@ -31,7 +31,7 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         String uri = request.getRequestURI();
-        NDC.push("uri="+uri+" id="+UUID.randomUUID().toString().split("-")[0]);
+        NDC.push("uri=" + uri + " id=" + UUID.randomUUID().toString().split("-")[0]);
         httpRequestLog(request);
         chain.doFilter(req, resp);
         NDC.pop();
@@ -40,9 +40,21 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
     protected void httpRequestLog(HttpServletRequest request) {
         HttpConfigBuilder builder = new HttpConfigBuilder();
         HttpConfig httpConfig = config(builder);
-        if (httpConfig != null) {
+        if (httpConfig != null && !excluded(httpConfig, request)) {
             LOGGER.info(HttpUtils.getHttpRequestProperties(request, httpConfig).toString());
         }
+    }
+
+    private boolean excluded(HttpConfig httpConfig, HttpServletRequest request) {
+        boolean excluded = false;
+        String httpUri = request.getRequestURI();
+        for (String uri : httpConfig.getExcludedUri()) {
+            if (httpUri.contains(uri)) {
+                excluded = true;
+                break;
+            }
+        }
+        return excluded;
     }
 
     /**
