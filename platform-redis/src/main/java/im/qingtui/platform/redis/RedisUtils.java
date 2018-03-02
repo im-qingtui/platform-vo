@@ -38,13 +38,14 @@ public class RedisUtils {
     private static JedisPool pool;
 
     static {
-        host = SysConfigPlaceholder.getStringProperty("redis.host");
-        auth = SysConfigPlaceholder.getStringProperty("redis.auth");
-        port = SysConfigPlaceholder.getIntProperty("redis.port");
-        maxActive = SysConfigPlaceholder.getIntProperty("redis.max.active");
-        maxIdle = SysConfigPlaceholder.getIntProperty("redis.max.idle");
-        maxWait = SysConfigPlaceholder.getIntProperty("redis.max.wait");
-        defaultDb = SysConfigPlaceholder.getIntProperty("redis.default.db");
+        final String redisNameSpace = "QT.redis";
+        host = SysConfigPlaceholder.getStringProperty("redis.host", null, redisNameSpace);
+        auth = SysConfigPlaceholder.getStringProperty("redis.password", null, redisNameSpace);
+        port = SysConfigPlaceholder.getIntProperty("redis.port", null, redisNameSpace);
+        maxActive = SysConfigPlaceholder.getIntProperty("redis.max.active", 2000, redisNameSpace);
+        maxIdle = SysConfigPlaceholder.getIntProperty("redis.max.idle", 1000, redisNameSpace);
+        maxWait = SysConfigPlaceholder.getIntProperty("redis.max.wait", 10000, redisNameSpace);
+        defaultDb = SysConfigPlaceholder.getIntProperty("redis.default.db", 0, redisNameSpace);
         initConnetion();
     }
 
