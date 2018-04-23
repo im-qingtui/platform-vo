@@ -34,9 +34,12 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         String uri = request.getRequestURI();
         NDC.push("uri=" + uri + " id=" + UUID.randomUUID().toString().split("-")[0]);
-        httpRequestLog(request);
-        chain.doFilter(req, resp);
-        NDC.pop();
+        try {
+            httpRequestLog(request);
+            chain.doFilter(req, resp);
+        } finally {
+            NDC.pop();
+        }
     }
 
     protected void httpRequestLog(HttpServletRequest request) {
