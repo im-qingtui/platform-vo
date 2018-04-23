@@ -4,7 +4,7 @@
 
     <groupId>im.qingtui.platform</groupId>
     <artifactId>platform-root</artifactId>
-    <version>2.0.8</version>
+    <version>2.0.9</version>
     <packaging>pom</packaging>
     <name>platform-root</name>
 

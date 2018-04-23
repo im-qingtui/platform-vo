@@ -1,6 +1,7 @@
 package im.qingtui.platform.web.wrapper;
 
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,11 @@ public class ParameterRequestWrapper extends HttpServletRequestWrapper {
         super(request);
 
         this.params = newParams;
+    }
+
+    public ParameterRequestWrapper(HttpServletRequest request) {
+        super(request);
+        this.params = new HashMap<String, String[]>();
     }
 
     @Override

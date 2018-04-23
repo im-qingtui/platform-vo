@@ -26,8 +26,14 @@ public class HttpConfig {
     @HttpElement
     private boolean method;
 
+    /**
+     * 排除的url集合 如/static /resources等静态资源目录
+     */
     private Set<String> excludedUri = new HashSet<String>();
 
+    /**
+     * 敏感参数集合 如密码 token等
+     */
     private Set<SensitiveParam> sensitiveInfo = new HashSet<SensitiveParam>();
 
     HttpConfig() {
