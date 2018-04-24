@@ -7,7 +7,6 @@ import im.qingtui.platform.web.annotation.HttpElement;
 import java.lang.reflect.Field;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -92,8 +91,9 @@ public class HttpUtils {
 
     private static void sensitiveFilter(String paramName, String paramValue, StringBuilder parameterBuilder, Set<SensitiveParam> sensitiveParams) {
         for (SensitiveParam sensitiveParam : sensitiveParams) {
-            if (paramName.toLowerCase().contains(sensitiveParam.getParamName())) {
-                if(sensitiveParam.getLevel() == SensitiveLevel.HIDE){
+            if (paramName.equalsIgnoreCase(sensitiveParam.getParamName())
+                || paramName.toLowerCase().contains(sensitiveParam.getParamName().toLowerCase())) {
+                if (sensitiveParam.getLevel() == SensitiveLevel.HIDE) {
                     return;
                 }
                 paramValue = SensitiveInfoUtils.incomplete(paramValue, sensitiveParam.getRate());
@@ -103,5 +103,25 @@ public class HttpUtils {
         parameterBuilder.append(paramName).append(":").append(paramValue);
         parameterBuilder.append(",");
     }
+
+
+    public static void httpRequestLog(HttpServletRequest request, HttpConfig httpConfig) {
+        if (httpConfig != null && !excluded(httpConfig, request)) {
+            LOGGER.info(HttpUtils.getHttpRequestProperties(request, httpConfig).toString());
+        }
+    }
+
+    private static boolean excluded(HttpConfig httpConfig, HttpServletRequest request) {
+        boolean excluded = false;
+        String httpUri = request.getRequestURI();
+        for (String uri : httpConfig.getExcludedUri()) {
+            if (httpUri.contains(uri)) {
+                excluded = true;
+                break;
+            }
+        }
+        return excluded;
+    }
+
 
 }
