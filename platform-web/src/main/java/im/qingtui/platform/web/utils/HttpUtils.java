@@ -4,7 +4,11 @@ package im.qingtui.platform.web.utils;
 import im.qingtui.platform.sensitive.SensitiveLevel;
 import im.qingtui.platform.sensitive.utils.SensitiveInfoUtils;
 import im.qingtui.platform.web.annotation.HttpElement;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +65,8 @@ public class HttpUtils {
         }
         headerBuilder.append("}");
         Map<String, String> fullMap = new HashMap<String, String>();
-        pushToFullMap(uri, method, remoteAddr, parameterBuilder.toString(), headerBuilder.toString(), fullMap);
+        String body = getBodyString(request);
+        pushToFullMap(uri, method, remoteAddr, parameterBuilder.toString(), headerBuilder.toString(), body, fullMap);
         Map<String, String> map = new HashMap<String, String>();
         Field[] fields = HttpConfig.class.getDeclaredFields();
         for (Field field : fields) {
@@ -81,12 +86,14 @@ public class HttpUtils {
         return map;
     }
 
-    private static void pushToFullMap(String uri, String method, String remoteAddr, String parameters, String headers, Map<String, String> fullMap) {
+    private static void pushToFullMap(String uri, String method, String remoteAddr, String parameters, String headers, String body,
+        Map<String, String> fullMap) {
         fullMap.put("ip", remoteAddr);
         fullMap.put("headers", headers);
         fullMap.put("params", parameters);
         fullMap.put("uri", uri);
         fullMap.put("method", method);
+        fullMap.put("body", body);
     }
 
     private static void sensitiveFilter(String paramName, String paramValue, StringBuilder parameterBuilder, Set<SensitiveParam> sensitiveParams) {
@@ -121,6 +128,20 @@ public class HttpUtils {
             }
         }
         return excluded;
+    }
+
+    public static String getBodyString(HttpServletRequest request) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), Charset.forName("UTF-8")));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            LOGGER.error("get http request body error", e);
+        }
+        return sb.toString();
     }
 
 

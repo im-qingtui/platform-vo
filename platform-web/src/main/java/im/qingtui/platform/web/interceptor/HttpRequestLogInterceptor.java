@@ -8,7 +8,7 @@ import im.qingtui.platform.web.utils.HttpConfigBuilder;
  *
  * @author dongbin
  */
-public class LogInterceptor extends AbstractLogInterceptor {
+public class HttpRequestLogInterceptor extends AbstractHttpRequestLogInterceptor {
 
     @Override
     protected HttpConfig config(HttpConfigBuilder builder) {

@@ -30,6 +30,9 @@ public class HttpConfig {
     @HttpElement
     private boolean method;
 
+    @HttpElement
+    private boolean body;
+
     /**
      * 排除的url集合 如/static /resources等静态资源目录
      */

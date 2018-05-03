@@ -47,6 +47,11 @@ public class HttpConfigBuilder {
         return this;
     }
 
+    public HttpConfigBuilder body(){
+        this.httpConfig.setBody(true);
+        return this;
+    }
+
     /**
      * 排除打印日志的uri
      * @param uri 需要被排除的uri

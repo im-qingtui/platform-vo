@@ -1,9 +1,15 @@
 package im.qingtui.platform.web.wrapper;
 
+import im.qingtui.platform.web.utils.HttpUtils;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -16,16 +22,20 @@ public class ParameterRequestWrapper extends HttpServletRequestWrapper {
 
     private Map<String, String[]> params;
 
+    private final byte[] body;
+
     public ParameterRequestWrapper(HttpServletRequest request,
         Map<String, String[]> newParams) {
         super(request);
 
         this.params = newParams;
+        body = HttpUtils.getBodyString(request).getBytes();
     }
 
     public ParameterRequestWrapper(HttpServletRequest request) {
         super(request);
-        this.params = new HashMap<String, String[]>();
+        this.params = request.getParameterMap();
+        body = HttpUtils.getBodyString(request).getBytes();
     }
 
     @Override
@@ -95,6 +105,25 @@ public class ParameterRequestWrapper extends HttpServletRequestWrapper {
                 params.put(name , new String[] {String.valueOf(value)});
             }
         }
+    }
+
+    @Override
+    public BufferedReader getReader() throws IOException {
+        return new BufferedReader(new InputStreamReader(getInputStream()));
+    }
+
+    @Override
+    public ServletInputStream getInputStream() throws IOException {
+
+        final ByteArrayInputStream bais = new ByteArrayInputStream(body);
+
+        return new ServletInputStream() {
+
+            @Override
+            public int read() throws IOException {
+                return bais.read();
+            }
+        };
     }
 
 }

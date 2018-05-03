@@ -14,10 +14,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Inherited
 @Documented
-public @interface Log {
+public @interface RequestLog {
     String DEFAULT_DESC = "before method invoke";
 
-    String value() default "before method invoke";
+    String value() default DEFAULT_DESC;
 
     boolean ignore() default false;
 
