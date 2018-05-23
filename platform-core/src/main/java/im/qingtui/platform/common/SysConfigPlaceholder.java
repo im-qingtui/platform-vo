@@ -99,6 +99,28 @@ public class SysConfigPlaceholder extends PropertyPlaceholderConfigurer implemen
         return getBooleanProperty(key, defaultValue, null);
     }
 
+
+    /**
+     * 根据spring value 类型的key 配置获取配置的值
+     * @param valueStr like "${systemProperties.myProp}".
+     * @return 配置信息
+     */
+    public static String getPropertyBySpringValue(String valueStr){
+        if (StringUtils.isEmpty(valueStr)||!valueStr.startsWith("${")||!valueStr.endsWith("}")){
+            log.warn("错误的配置项{}",valueStr);
+            return "";
+        }
+        if (valueStr.contains(":")){
+            String key=valueStr.substring(2,valueStr.indexOf(":"));
+            String defaultValue=valueStr.substring(valueStr.indexOf(":"),valueStr.length()-1);
+            return getStringProperty(key,defaultValue);
+        }else {
+            String key=valueStr.substring(2,valueStr.length()-1);
+            return getStringProperty(key,"");
+        }
+    }
+
+
     public static String getStringProperty(String key, String defaultValue, String nameSpace) {
         String value;
         if (StringUtils.isEmpty(nameSpace)) {
