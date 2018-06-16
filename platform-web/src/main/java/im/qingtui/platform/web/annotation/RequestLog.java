@@ -15,9 +15,8 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 public @interface RequestLog {
-    String DEFAULT_DESC = "before method invoke";
 
-    String value() default DEFAULT_DESC;
+    String value() default "";
 
     boolean ignore() default false;
 
