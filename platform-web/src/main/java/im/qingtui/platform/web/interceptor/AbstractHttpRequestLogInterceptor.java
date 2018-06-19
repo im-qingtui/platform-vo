@@ -5,7 +5,6 @@ import im.qingtui.platform.web.annotation.RequestLog;
 import im.qingtui.platform.web.utils.HttpConfig;
 import im.qingtui.platform.web.utils.HttpConfigBuilder;
 import im.qingtui.platform.web.utils.HttpUtils;
-import im.qingtui.platform.web.wrapper.ParameterRequestWrapper;
 import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,9 +35,8 @@ public abstract class AbstractHttpRequestLogInterceptor extends HandlerIntercept
         if (null != logAnnotation && !logAnnotation.ignore()
             && StringUtils.isNotBlank(logAnnotation.value())) {
             MDC.put(MDC_DESC_KEY, logAnnotation.value());
-            HttpUtils.httpRequestLog(new ParameterRequestWrapper(req), httpConfig);
         }
-
+        HttpUtils.httpRequestLog(req, httpConfig);
         return true;
     }
 
