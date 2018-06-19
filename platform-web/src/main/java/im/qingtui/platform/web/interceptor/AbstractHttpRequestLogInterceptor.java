@@ -32,11 +32,16 @@ public abstract class AbstractHttpRequestLogInterceptor extends HandlerIntercept
         Method method = handlerMethod.getMethod();
         RequestLog logAnnotation = method.getAnnotation(RequestLog.class);
 
-        if (null != logAnnotation && !logAnnotation.ignore()
-            && StringUtils.isNotBlank(logAnnotation.value())) {
-            MDC.put(MDC_DESC_KEY, logAnnotation.value());
+        if (null != logAnnotation) {
+            if (logAnnotation.ignore()) {
+                return true;
+            } else if (StringUtils.isNotBlank(logAnnotation.value())) {
+                MDC.put(MDC_DESC_KEY, logAnnotation.value());
+            }
         }
+
         HttpUtils.httpRequestLog(req, httpConfig);
+
         return true;
     }
 
