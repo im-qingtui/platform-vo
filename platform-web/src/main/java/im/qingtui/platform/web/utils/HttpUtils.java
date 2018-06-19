@@ -29,8 +29,9 @@ public class HttpUtils {
     /**
      * 将HTTP请求的信息组装成map，用于日志打印
      *
-     * @param request http请求
-     * @return map
+     * @param request request http请求
+     * @param httpConfig config 配置
+     * @return 所有需要打印的参数
      */
     public static Map<String, String> getHttpRequestProperties(HttpServletRequest request, HttpConfig httpConfig) {
         String uri = request.getRequestURI();

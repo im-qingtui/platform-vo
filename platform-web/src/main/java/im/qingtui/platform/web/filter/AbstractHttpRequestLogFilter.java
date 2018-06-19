@@ -34,17 +34,16 @@ public abstract class AbstractHttpRequestLogFilter implements Filter {
 
     /**
      * 配置http打印项
-     *
      * @param builder HttpConfig创建器
+     * @return HttpConfig
      */
     protected abstract HttpConfig config(HttpConfigBuilder builder);
 
     /**
      * 获取请求发起人身份标识
-     *
-     * @return 身份标识
+     * @param config 配置
+     * @throws ServletException
      */
-
     public void init(FilterConfig config) throws ServletException {
         HttpConfigBuilder builder = new HttpConfigBuilder();
         httpConfig = config(builder);

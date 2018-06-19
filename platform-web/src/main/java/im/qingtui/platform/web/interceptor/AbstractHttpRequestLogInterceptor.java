@@ -47,6 +47,9 @@ public abstract class AbstractHttpRequestLogInterceptor extends HandlerIntercept
 
     /**
      * 配置http打印项
+     *
+     * @param builder HttpConfig创建器
+     * @return HttpConfig
      */
     protected abstract HttpConfig config(HttpConfigBuilder builder);
 }
