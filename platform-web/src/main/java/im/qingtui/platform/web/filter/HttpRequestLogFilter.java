@@ -15,4 +15,5 @@ public class HttpRequestLogFilter extends AbstractHttpRequestLogFilter {
     protected HttpConfig config(HttpConfigBuilder builder) {
         return builder.ip().method().params().build();
     }
+
 }
