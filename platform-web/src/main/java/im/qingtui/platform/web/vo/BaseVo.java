@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class BaseVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Long DEFAULT_SUCCESS_CODE = 200L;
+    private static final Long DEFAULT_SUCCESS_CODE = 0L;
 
     private Long code = DEFAULT_SUCCESS_CODE;
 
