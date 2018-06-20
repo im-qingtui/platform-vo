@@ -9,6 +9,12 @@
 
   <dubbo:protocol port="${dubbo.protocol.port:-1}"/>
 
+  <dubbo:protocol name="dubbo" port="-1"/>
+
+  <dubbo:consumer check="false"/>
+
+  <dubbo:annotation package="im.qingtui"/>
+
   <dubbo:registry address="${zookeeper.url}"/>
 
 </beans>
