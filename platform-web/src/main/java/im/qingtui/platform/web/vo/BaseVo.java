@@ -23,6 +23,10 @@ public class BaseVo implements Serializable {
 
     private String message;
 
+    public static BaseVo error(long code, String message) {
+        return new BaseVo(code, message);
+    }
+
 
     public static BaseVo defaultError() {
         return new BaseVo(-1L, "system error");
@@ -38,6 +42,10 @@ public class BaseVo implements Serializable {
 
     public void setCode(String code) {
         this.code = Long.valueOf(code);
+    }
+
+    public void setCode(int code) {
+        this.code = (long) code;
     }
 
 }
