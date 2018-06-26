@@ -13,8 +13,17 @@ public class BaseResultListVo<T> extends BaseDataVo<ResultListVo<T>> {
         super(new ResultListVo<>(list));
     }
 
+    public BaseResultListVo() {
+        super(new ResultListVo<T>());
+    }
+
     // 默认成功设置数据的返回对象
     public static <T> BaseResultListVo<T> successData(List<T> list) {
         return new BaseResultListVo<T>(list);
+    }
+
+    // 返回空list
+    public static <T> BaseResultListVo<T> emptyList() {
+        return new BaseResultListVo<T>();
     }
 }
