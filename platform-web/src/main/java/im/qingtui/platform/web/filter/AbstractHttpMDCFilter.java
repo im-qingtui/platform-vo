@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public abstract class AbstractHttpMDCFilter implements Filter {
 
-    private static final String REQUEST_ID_HEADER = "REQUEST_ID";
+    private static final String REQUEST_ID_HEADER = "Request-ID";
 
     public void init(FilterConfig filterConfig) {
     }
@@ -30,10 +30,15 @@ public abstract class AbstractHttpMDCFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         long start = System.currentTimeMillis();
         HttpServletRequest request = (HttpServletRequest) req;
-        String requestId = LogUtils.getRequestId();
+        String requestId = request.getHeader(REQUEST_ID_HEADER);
+
+        if (StringUtils.isBlank(requestId)) {
+            requestId = LogUtils.getRequestId();
+            ((HttpServletResponse) resp).addHeader(REQUEST_ID_HEADER, requestId);
+        }
+
         String method = getMethod(request);
         LogUtils.setMDC(requestId, method);
-        ((HttpServletResponse) resp).addHeader(REQUEST_ID_HEADER, requestId);
 
         try {
             chain.doFilter(req, resp);
