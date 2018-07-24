@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import org.apache.commons.io.IOUtils;
 
 /**
  * 自定义HTTP请求包装类，用于将下划线风格的参数包装成驼峰风格参数
@@ -25,17 +26,17 @@ public class ParameterRequestWrapper extends HttpServletRequestWrapper {
     private final byte[] body;
 
     public ParameterRequestWrapper(HttpServletRequest request,
-        Map<String, String[]> newParams) {
+        Map<String, String[]> newParams) throws IOException {
         super(request);
 
         this.params = newParams;
-        body = HttpUtils.getBodyString(request).getBytes();
+        body = IOUtils.toByteArray(request.getInputStream());
     }
 
-    public ParameterRequestWrapper(HttpServletRequest request) {
+    public ParameterRequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
         this.params = request.getParameterMap();
-        body = HttpUtils.getBodyString(request).getBytes();
+        body = IOUtils.toByteArray(request.getInputStream());
     }
 
     @Override

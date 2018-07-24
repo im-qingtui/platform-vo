@@ -131,7 +131,7 @@ public class HttpUtils {
         return excluded;
     }
 
-    public static String getBodyString(HttpServletRequest request) {
+    private static String getBodyString(HttpServletRequest request) {
         StringBuilder sb = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), Charset.forName("UTF-8")));
