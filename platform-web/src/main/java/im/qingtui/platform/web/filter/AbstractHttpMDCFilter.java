@@ -35,6 +35,8 @@ public abstract class AbstractHttpMDCFilter implements Filter {
         if (StringUtils.isBlank(requestId)) {
             requestId = LogUtils.getRequestId();
             ((HttpServletResponse) resp).addHeader(REQUEST_ID_HEADER, requestId);
+        } else {
+            LogUtils.setRequestId(requestId);
         }
 
         String method = getMethod(request);
