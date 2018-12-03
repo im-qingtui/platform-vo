@@ -10,6 +10,7 @@ import java.util.Set;
 /**
  * Created by leesir on 2017/6/14.
  */
+
 public class HttpConfigBuilder {
 
     private HttpConfig httpConfig;
@@ -47,18 +48,19 @@ public class HttpConfigBuilder {
         return this;
     }
 
-    public HttpConfigBuilder body(){
+    public HttpConfigBuilder body() {
         this.httpConfig.setBody(true);
         return this;
     }
 
     /**
      * 排除打印日志的uri
+     *
      * @param uri 需要被排除的uri
      * @return HttpConfig配置创建器
      */
-    public HttpConfigBuilder excludedUri(String... uri){
-        if(uri != null){
+    public HttpConfigBuilder excludedUri(String... uri) {
+        if (uri != null) {
             Set<String> uris = new HashSet<String>();
             uris.addAll(Arrays.asList(uri));
             this.httpConfig.getExcludedUri().addAll(uris);
@@ -84,22 +86,23 @@ public class HttpConfigBuilder {
      * @return HttpConfig配置创建器
      */
     public HttpConfigBuilder sensitiveInfo(double rate, String... sensitives) {
-        return sensitiveInfo(rate,SensitiveLevel.INCOMPLETE,sensitives);
+        return sensitiveInfo(rate, SensitiveLevel.INCOMPLETE, sensitives);
     }
 
     /**
      * 配置需要被排除的敏感信息
+     *
      * @param params 被排除的关键词，请求参数或请求头包含（注意不是全匹配）这些关键词时将被忽略打印
      * @return HttpConfig配置创建器
      */
-    public HttpConfigBuilder excludedParam(String... params){
-        return sensitiveInfo(0,SensitiveLevel.HIDE,params);
+    public HttpConfigBuilder excludedParam(String... params) {
+        return sensitiveInfo(0, SensitiveLevel.HIDE, params);
     }
 
     private HttpConfigBuilder sensitiveInfo(double rate, SensitiveLevel level, String... sensitives) {
-        if(sensitives != null){
+        if (sensitives != null) {
             Set<SensitiveParam> set = new HashSet<SensitiveParam>();
-            for(String sensitive : sensitives){
+            for (String sensitive : sensitives) {
                 SensitiveParam sensitiveParam = new SensitiveParam();
                 sensitiveParam.setParamName(sensitive);
                 sensitiveParam.setLevel(level);
