@@ -28,6 +28,8 @@ import lombok.val;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 /**
@@ -99,6 +101,15 @@ public class HttpUtils {
             }
         }
         return map;
+    }
+
+    /**
+     * 从当前线程中 获取 人request 变量
+     * @return request 变量
+     */
+    public static HttpServletRequest getRequest() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+            .getRequest();
     }
 
     private static void pushToFullMap(String uri, String method, String remoteAddr, String parameters, String headers, String body,
