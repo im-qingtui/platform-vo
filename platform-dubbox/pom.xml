@@ -5,12 +5,12 @@
   <parent>
     <groupId>im.qingtui.platform</groupId>
     <artifactId>platform-root</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
 
-  <version>2.1.1</version>
+  <version>2.1.2</version>
   <artifactId>platform-dubbox</artifactId>
   <name>platform-dubbox</name>
   <packaging>jar</packaging>
@@ -20,7 +20,7 @@
     <dependency>
       <groupId>im.qingtui.platform</groupId>
       <artifactId>platform-core</artifactId>
-      <version>2.1.1</version>
+      <version>2.1.2</version>
     </dependency>
 
     <dependency>
