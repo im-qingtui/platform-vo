@@ -28,6 +28,10 @@ public abstract class AbstractHttpRequestLogInterceptor extends HandlerIntercept
 
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
+        // 修复了 一些 请求 无法转换的 bug
+        if (!(handler instanceof HandlerMethod)) {
+            return true;
+        }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
         RequestLog logAnnotation = method.getAnnotation(RequestLog.class);
