@@ -8,7 +8,7 @@
     <version>2.1.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <version>2.1.2.3</version>
+  <version>2.1.2.4</version>
   <artifactId>platform-vo</artifactId>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
