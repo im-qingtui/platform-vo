@@ -22,9 +22,9 @@ public class BaseVo implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
-    private static final Long DEFAULT_SUCCESS_CODE = 0L;
+    private static final long DEFAULT_SUCCESS_CODE = 0L;
 
-    private Long code = DEFAULT_SUCCESS_CODE;
+    private long code = DEFAULT_SUCCESS_CODE;
 
     private String message;
 
@@ -41,7 +41,7 @@ public class BaseVo implements Serializable {
         return DEFAULT_SUCCESS;
     }
 
-    public void setCode(Long code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
