@@ -16,15 +16,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BaseVo implements Serializable {
 
-    private static final BaseVo DEFAULT_SUCCESS = new BaseVo();
+    private static final long serialVersionUID = 1L;
+    private static final long DEFAULT_SUCCESS_CODE = 0L;
+
+    private static final BaseVo DEFAULT_SUCCESS = new BaseVo(DEFAULT_SUCCESS_CODE);
 
     private static final BaseVo DEFAULT_ERROR = new BaseVo(-1L, "system error");
 
-
-    private static final long serialVersionUID = 1L;
-    private static final Long DEFAULT_SUCCESS_CODE = 0L;
-
-    private Long code = DEFAULT_SUCCESS_CODE;
+    private long code = DEFAULT_SUCCESS_CODE;
 
     private String message;
 
@@ -32,6 +31,9 @@ public class BaseVo implements Serializable {
         return new BaseVo(code, message);
     }
 
+    public BaseVo(long code) {
+        this.code = code;
+    }
 
     public static BaseVo defaultError() {
         return DEFAULT_ERROR;
@@ -56,5 +58,4 @@ public class BaseVo implements Serializable {
     public void setCode(int code) {
         this.code = (long) code;
     }
-
 }
