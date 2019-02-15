@@ -27,8 +27,10 @@ public class BaseDataVo<T> extends BaseVo {
         return vo;
     }
 
-    // 默认成功设置数据的返回对象
+    /**
+     * 默认成功设置数据的返回对象
+     */
     public static <T> BaseDataVo<T> successData(T data) {
-        return new BaseDataVo<T>(data);
+        return new BaseDataVo<>(data);
     }
 }

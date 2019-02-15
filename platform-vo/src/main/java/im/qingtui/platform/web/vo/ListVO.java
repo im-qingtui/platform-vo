@@ -1,26 +1,24 @@
 package im.qingtui.platform.web.vo;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 
 /**
- * 返回列表用的vo
- * 不推荐使用了，此处 的list 未用data包裹，不再推荐使用
+ * 用于装载标准list vo的返回 此 list 可以包裹在 {@link BaseDataListVO}
+ *
+ * @param <T> list中的泛型
  * @author dongbin
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-
-@Deprecated
-public class BaseListVo<T> extends BaseVo {
+public class ListVO<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer totalCount;
@@ -28,11 +26,11 @@ public class BaseListVo<T> extends BaseVo {
     @NonNull
     private List<T> list;
 
-    public static <T> BaseListVo<T> successData(List<T> list) {
+    public static <T> ListVO<T> successData(List<T> list) {
         if (list == null) {
-            return new BaseListVo<>(Collections.<T>emptyList());
+            return new ListVO<>(Collections.<T>emptyList());
         }
-        val vo = new BaseListVo<T>(list);
+        val vo = new ListVO<T>(list);
         vo.setHasMore(false);
         vo.setTotalCount(list.size());
         return vo;
